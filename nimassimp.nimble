@@ -1,5 +1,5 @@
 [Package]
-name = "nim-assimp"
+name = "nimassimp"
 version = "0.1.1"
 author = "fowl"
 description = "Assorted wrappers and reusable libraries."
