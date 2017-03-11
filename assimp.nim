@@ -177,9 +177,9 @@ type
 
   PBone* = ptr TBone
   TBone* = object
-    name: AiString
+    name*: AiString
     numWeights*: cint
-    weights*: ptr TVertexWeight
+    weights*: ptr UncheckedArray[TVertexWeight]
     offsetMatrix*: TMatrix4x4
 
   TVertexWeight* = object
