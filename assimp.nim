@@ -288,6 +288,9 @@ proc getTexture*(material: PMaterial; kind: TTextureType; index: cint;
   mapMode: ptr TTextureMapMode = nil; flags: ptr cint = nil): AIreturn {.
   importc: "aiGetMaterialTexture", dynlib:LibName.}
 
+proc getTextureCount*(material: PMaterial; kind: TTextureType): uint32 {.
+  importc: "aiGetMaterialTextureCount", dynlib:LibName.}
+
 
 proc transpose*(some: ptr TMatrix4x4) {.importc: "aiTransposeMatrix4", dynlib:LibName.}
 proc transpose*(some: ptr TMatrix3x3) {.importc: "aiTransposeMatrix3", dynlib:LibName.}
