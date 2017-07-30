@@ -299,7 +299,7 @@ proc getMaterialColor*(material: PMaterial, name: cstring, color: ptr TColor3d):
 proc getTextureCount*(material: PMaterial; kind: TTextureType): uint32 {.
   importc: "aiGetMaterialTextureCount", dynlib:LibName.}
 
-proc getMaterialFloatArray*(material: PMaterial, key: cstring, `type`, index: cuint, `out`: ptr cfloat, max: cuint): AIreturn {.
+proc getMaterialFloatArray*(material: PMaterial, key: cstring, `type`, index: cuint = 0.cuint, `out`: ptr cfloat, max: ptr cuint = nil): AIreturn {.
   importc: "aiGetMaterialFloatArray", dynlib:LibName.}
 
 
