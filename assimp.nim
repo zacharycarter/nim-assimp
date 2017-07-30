@@ -34,6 +34,11 @@ const
   AI_MAX_NUMBER_OF_COLOR_SETS = 0x8
   AI_MAX_NUMBER_OF_TEXTURECOORDS = 0x8
   MAXLEN_AISTRING = 1024
+  AI_MATKEY_COLOR_DIFFUSE* = "$clr.diffuse"
+  AI_MATKEY_COLOR_AMBIENT* = "$clr.ambient"
+  AI_MATKEY_COLOR_SPECULAR* = "$clr.specular"
+  AI_MATKEY_SHININESS* = "$mat.shininess"
+
 type
   UncheckedArray* {.unchecked.} [T] = array[1,T]
 
@@ -288,8 +293,16 @@ proc getTexture*(material: PMaterial; kind: TTextureType; index: cint;
   mapMode: ptr TTextureMapMode = nil; flags: ptr cint = nil): AIreturn {.
   importc: "aiGetMaterialTexture", dynlib:LibName.}
 
+proc getMaterialColor*(material: PMaterial, name: cstring, color: ptr TColor3d): AIreturn {.
+  importc: "aiGetMaterialColor", dynlib:LibName.}
+
 proc getTextureCount*(material: PMaterial; kind: TTextureType): uint32 {.
   importc: "aiGetMaterialTextureCount", dynlib:LibName.}
+
+proc getMaterialFloatArray*(material: PMaterial, key: cstring, `type`, index: cuint, `out`: ptr cfloat, max: cuint): AIreturn {.
+  importc: "aiGetMaterialFloatArray", dynlib:LibName.}
+
+
 
 
 proc transpose*(some: ptr TMatrix4x4) {.importc: "aiTransposeMatrix4", dynlib:LibName.}
