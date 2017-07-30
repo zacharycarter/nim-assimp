@@ -293,7 +293,7 @@ proc getTexture*(material: PMaterial; kind: TTextureType; index: cint;
   mapMode: ptr TTextureMapMode = nil; flags: ptr cint = nil): AIreturn {.
   importc: "aiGetMaterialTexture", dynlib:LibName.}
 
-proc getMaterialColor*(material: PMaterial, name: cstring, color: ptr TColor3d): AIreturn {.
+proc getMaterialColor*(material: PMaterial, name: cstring, `type`, index: cuint, color: ptr TColor3d): AIreturn {.
   importc: "aiGetMaterialColor", dynlib:LibName.}
 
 proc getTextureCount*(material: PMaterial; kind: TTextureType): uint32 {.
