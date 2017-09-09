@@ -24,7 +24,7 @@ THE SOFTWARE.
 
 import unsigned
 when defined(windows):
-  const LibName = "assimp(-vc130-mt).dll"
+  const LibName = "assimp.dll"
 elif defined(macosx):
   const LibName = "libassimp.dylib"
 else:
