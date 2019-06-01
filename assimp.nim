@@ -23,7 +23,7 @@ THE SOFTWARE.
 """
 
 when defined(windows):
-  const LibName = "Assimp(|32|64).dll"
+  const LibName = "(Assimp|Assimp32|Assimp64|assimp-vc140-mt).dll"
 elif defined(macosx):
   const LibName = "libassimp.dylib"
 else:
