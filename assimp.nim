@@ -22,7 +22,6 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 """
 
-import unsigned
 when defined(windows):
   const LibName = "Assimp(|32|64).dll"
 elif defined(macosx):
@@ -40,8 +39,6 @@ const
   AI_MATKEY_SHININESS* = "$mat.shininess"
 
 type
-  UncheckedArray* {.unchecked.} [T] = array[1,T]
-
   PNode* = ptr TNode
   TNode* {.pure.} = object
     name*: AIstring
