@@ -54,16 +54,16 @@ type
     primitiveTypes*: cint
     vertexCount*: cint
     faceCount*: cint
-    vertices*: ptr TVector3d
-    normals*: ptr TVector3d
-    tangents*: ptr TVector3d
-    bitTangents*: ptr TVector3d
+    vertices*: ptr UncheckedArray[TVector3d]
+    normals*: ptr UncheckedArray[TVector3d]
+    tangents*: ptr UncheckedArray[TVector3d]
+    bitTangents*: ptr UncheckedArray[TVector3d]
     colors*: array[0..AI_MAX_NUMBER_OF_COLOR_SETS-1, ptr TColor4d]
     texCoords*: array[0..AI_MAX_NUMBER_OF_TEXTURECOORDS-1, ptr TVector3d]
     numUVcomponents*: array[0..AI_MAX_NUMBER_OF_TEXTURECOORDS-1, cint]
-    faces*: ptr UncheckedArray[TFace]
+    faces*: ptr ptr UncheckedArray[TFace]
     boneCount*: cint
-    bones*: ptr UncheckedArray[PBone]
+    bones*: ptr ptr UncheckedArray[PBone]
     materialIndex*: cint
     name*: AIstring
     anmMeshCount*: cint
@@ -74,17 +74,17 @@ type
     flags*: cint
     rootNode*: PNode
     meshCount*: cint
-    meshes*: ptr UncheckedArray[PMesh]
+    meshes*: ptr ptr UncheckedArray[PMesh]
     materialCount*: cint
-    materials*: ptr UncheckedArray[PMaterial]
+    materials*: ptr ptr UncheckedArray[PMaterial]
     animationCount*: cint
-    animations*: ptr UncheckedArray[PAnimation]
+    animations*: ptr ptr UncheckedArray[PAnimation]
     textureCount*: cint
-    textures*: ptr UncheckedArray[PTexture]
+    textures*: ptr ptr UncheckedArray[PTexture]
     lightCount*: cint
-    lights*: ptr UncheckedArray[PLight]
+    lights*: ptr ptr UncheckedArray[PLight]
     cameraCount*: cint
-    cameras*: ptr UncheckedArray[PCamera]
+    cameras*: ptr ptr UncheckedArray[PCamera]
 
   PMaterial* = ptr TMaterial
   TMaterial* {.pure.} = object
@@ -98,19 +98,19 @@ type
     duration*: cdouble
     ticksPerSec*: cdouble
     channelCount*: cint
-    channels*: ptr PNodeAnim
+    channels*: ptr ptr UncheckedArray[PNodeAnim]
     meshChannelCount*: cint
-    meshChannels*: ptr PMeshAnim
+    meshChannels*: ptr ptr UncheckedArray[PMeshAnim]
 
   PNodeAnim* = ptr TNodeAnim
   TNodeAnim* {.pure.} = object
     nodeName*: AIstring
     positionKeyCount*: cint
-    positionKeys*: ptr TVectorKey
+    positionKeys*: ptr UncheckedArray[TVectorKey]
     rotationKeyCount*: cint
-    rotationKeys*: ptr TQuatKey
+    rotationKeys*: ptr UncheckedArray[TQuatKey]
     scalingKeyCount*: cint
-    scalingKeys*: ptr TVectorKey
+    scalingKeys*: ptr UncheckedArray[TVectorKey]
     preState*: TAnimBehavior
     posState*: TAnimBehavior
 
@@ -118,7 +118,7 @@ type
   TMeshAnim* {.pure.} = object
     name*: AIstring
     keyCount*: cint
-    keys*: ptr TMeshKey
+    keys*: ptr UncheckedArray[TMeshKey]
 
   TAnimBehavior*{.size: sizeof(cint).} = enum
     AnimBehaviorDefault = 0, AnimBehaviorConstant = 1,
