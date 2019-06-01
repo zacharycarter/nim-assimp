@@ -61,7 +61,7 @@ type
     colors*: array[0..AI_MAX_NUMBER_OF_COLOR_SETS-1, ptr TColor4d]
     texCoords*: array[0..AI_MAX_NUMBER_OF_TEXTURECOORDS-1, ptr TVector3d]
     numUVcomponents*: array[0..AI_MAX_NUMBER_OF_TEXTURECOORDS-1, cint]
-    faces*: ptr ptr UncheckedArray[TFace]
+    faces*: ptr UncheckedArray[TFace]
     boneCount*: cint
     bones*: ptr ptr UncheckedArray[PBone]
     materialIndex*: cint
