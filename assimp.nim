@@ -63,7 +63,7 @@ type
     numUVcomponents*: array[0..AI_MAX_NUMBER_OF_TEXTURECOORDS-1, cint]
     faces*: ptr UncheckedArray[TFace]
     boneCount*: cint
-    bones*: ptr ptr UncheckedArray[PBone]
+    bones*: ptr UncheckedArray[PBone]
     materialIndex*: cint
     name*: AIstring
     anmMeshCount*: cint
@@ -74,17 +74,17 @@ type
     flags*: cint
     rootNode*: PNode
     meshCount*: cint
-    meshes*: ptr ptr UncheckedArray[PMesh]
+    meshes*: ptr UncheckedArray[PMesh]
     materialCount*: cint
-    materials*: ptr ptr UncheckedArray[PMaterial]
+    materials*: ptr UncheckedArray[PMaterial]
     animationCount*: cint
-    animations*: ptr ptr UncheckedArray[PAnimation]
+    animations*: ptr UncheckedArray[PAnimation]
     textureCount*: cint
-    textures*: ptr ptr UncheckedArray[PTexture]
+    textures*: ptr UncheckedArray[PTexture]
     lightCount*: cint
-    lights*: ptr ptr UncheckedArray[PLight]
+    lights*: ptr UncheckedArray[PLight]
     cameraCount*: cint
-    cameras*: ptr ptr UncheckedArray[PCamera]
+    cameras*: ptr UncheckedArray[PCamera]
 
   PMaterial* = ptr TMaterial
   TMaterial* {.pure.} = object
@@ -98,9 +98,9 @@ type
     duration*: cdouble
     ticksPerSec*: cdouble
     channelCount*: cint
-    channels*: ptr ptr UncheckedArray[PNodeAnim]
+    channels*: ptr UncheckedArray[PNodeAnim]
     meshChannelCount*: cint
-    meshChannels*: ptr ptr UncheckedArray[PMeshAnim]
+    meshChannels*: ptr UncheckedArray[PMeshAnim]
 
   PNodeAnim* = ptr TNodeAnim
   TNodeAnim* {.pure.} = object
