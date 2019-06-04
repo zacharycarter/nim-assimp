@@ -22,9 +22,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 """
 
-import unsigned
 when defined(windows):
-  const LibName = "Assimp(|32|64).dll"
+  const LibName = "(Assimp|Assimp32|Assimp64|assimp-vc140-mt).dll"
 elif defined(macosx):
   const LibName = "libassimp.dylib"
 else:
@@ -40,8 +39,6 @@ const
   AI_MATKEY_SHININESS* = "$mat.shininess"
 
 type
-  UncheckedArray* {.unchecked.} [T] = array[1,T]
-
   PNode* = ptr TNode
   TNode* {.pure.} = object
     name*: AIstring
@@ -57,12 +54,12 @@ type
     primitiveTypes*: cint
     vertexCount*: cint
     faceCount*: cint
-    vertices*: ptr TVector3d
-    normals*: ptr TVector3d
-    tangents*: ptr TVector3d
-    bitTangents*: ptr TVector3d
-    colors*: array[0..AI_MAX_NUMBER_OF_COLOR_SETS-1, ptr TColor4d]
-    texCoords*: array[0..AI_MAX_NUMBER_OF_TEXTURECOORDS-1, ptr TVector3d]
+    vertices*: ptr UncheckedArray[TVector3d]
+    normals*: ptr UncheckedArray[TVector3d]
+    tangents*: ptr UncheckedArray[TVector3d]
+    bitTangents*: ptr UncheckedArray[TVector3d]
+    colors*: array[0..AI_MAX_NUMBER_OF_COLOR_SETS-1, ptr UncheckedArray[TColor4d]]
+    texCoords*: array[0..AI_MAX_NUMBER_OF_TEXTURECOORDS-1, ptr UncheckedArray[TVector3d]]
     numUVcomponents*: array[0..AI_MAX_NUMBER_OF_TEXTURECOORDS-1, cint]
     faces*: ptr UncheckedArray[TFace]
     boneCount*: cint
@@ -101,19 +98,19 @@ type
     duration*: cdouble
     ticksPerSec*: cdouble
     channelCount*: cint
-    channels*: ptr PNodeAnim
+    channels*: ptr UncheckedArray[PNodeAnim]
     meshChannelCount*: cint
-    meshChannels*: ptr PMeshAnim
+    meshChannels*: ptr UncheckedArray[PMeshAnim]
 
   PNodeAnim* = ptr TNodeAnim
   TNodeAnim* {.pure.} = object
     nodeName*: AIstring
     positionKeyCount*: cint
-    positionKeys*: ptr TVectorKey
+    positionKeys*: ptr UncheckedArray[TVectorKey]
     rotationKeyCount*: cint
-    rotationKeys*: ptr TQuatKey
+    rotationKeys*: ptr UncheckedArray[TQuatKey]
     scalingKeyCount*: cint
-    scalingKeys*: ptr TVectorKey
+    scalingKeys*: ptr UncheckedArray[TVectorKey]
     preState*: TAnimBehavior
     posState*: TAnimBehavior
 
@@ -121,7 +118,7 @@ type
   TMeshAnim* {.pure.} = object
     name*: AIstring
     keyCount*: cint
-    keys*: ptr TMeshKey
+    keys*: ptr UncheckedArray[TMeshKey]
 
   TAnimBehavior*{.size: sizeof(cint).} = enum
     AnimBehaviorDefault = 0, AnimBehaviorConstant = 1,
